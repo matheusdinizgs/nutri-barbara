@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bárbara Milesi | Nutricionista</title>
+<meta name="description" content="Nutricionista em Porto Alegre — Estética, Performance e Patologias. CRN2 21670D. Agende sua consulta pelo WhatsApp.">
+<link rel="icon" type="image/png" href="selo-barbara-milesi.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,500;1,9..144,600&family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --cream: #F4EEDD;
+    --cream-2: #EDE4CC;
+    --olive-deep: #454E3C;
+    --olive-mid: #6B7255;
+    --olive-soft: #C9CBA3;
+    --gold: #B8863C;
+    --rust: #A6552E;
+    --ink: #2A2318;
+    --font-display: 'Fraunces', serif;
+    --font-body: 'Work Sans', sans-serif;
+    --radius: 22px;
+  }
+
+  *{ box-sizing: border-box; }
+  html{ scroll-behavior: smooth; }
+
+  body{
+    margin:0;
+    background: var(--cream);
+    color: var(--ink);
+    font-family: var(--font-body);
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  img{ max-width:100%; display:block; }
+
+  a{ color: inherit; }
+
+  .wrap{
+    max-width: 1120px;
+    margin: 0 auto;
+    padding: 0 clamp(20px, 5vw, 48px);
+  }
+
+  h1,h2,h3{
+    font-family: var(--font-display);
+    color: var(--olive-deep);
+    margin: 0 0 .4em;
+    line-height: 1.08;
+    font-weight: 600;
+  }
+
+  em{
+    font-style: italic;
+    color: var(--rust);
+  }
+
+  p{ margin: 0 0 1em; }
+
+  .eyebrow{
+    display:inline-flex;
+    align-items:center;
+    gap:.5em;
+    font-family: var(--font-body);
+    font-weight:600;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    font-size: .72rem;
+    color: var(--olive-mid);
+  }
+
+  .eyebrow::before{
+    content:"";
+    width: 18px; height: 1px;
+    background: var(--olive-mid);
+    display:inline-block;
+  }
+
+  /* ---------- botões ---------- */
+  .btn{
+    display:inline-flex;
+    align-items:center;
+    gap:.6em;
+    font-family: var(--font-body);
+    font-weight:600;
+    font-size: .95rem;
+    padding: .95em 1.6em;
+    border-radius: 999px;
+    text-decoration:none;
+    transition: transform .18s ease, box-shadow .18s ease;
+    border: 1.5px solid transparent;
+    white-space: nowrap;
+  }
+  .btn:hover{ transform: translateY(-2px); }
+  .btn:focus-visible{ outline: 3px solid var(--gold); outline-offset: 3px; }
+
+  .btn-primary{
+    background: var(--olive-deep);
+    color: var(--cream);
+    box-shadow: 0 8px 20px rgba(69,78,60,.28);
+  }
+  .btn-primary:hover{ box-shadow: 0 12px 26px rgba(69,78,60,.36); }
+
+  .btn-ghost{
+    background: transparent;
+    border-color: var(--olive-deep);
+    color: var(--olive-deep);
+  }
+  .btn-ghost:hover{ background: rgba(69,78,60,.06); }
+
+  .btn svg{ width:18px; height:18px; flex-shrink:0; }
+
+  /* ---------- nav ---------- */
+  .nav{
+    position: sticky;
+    top:0;
+    z-index: 40;
+    background: rgba(244,238,221,.85);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid rgba(42,35,24,.08);
+  }
+  .nav .wrap{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding-top: 14px;
+    padding-bottom: 14px;
+  }
+  .logo{
+    display:flex;
+    align-items:center;
+    gap:.7em;
+    text-decoration:none;
+  }
+  .logo-mark{
+    width:40px; height:40px;
+    border-radius:50%;
+    background: var(--olive-deep);
+    color: var(--cream);
+    font-family: var(--font-display);
+    font-weight:600;
+    font-size: 1rem;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    flex-shrink:0;
+  }
+  .logo-text{ line-height:1.1; }
+  .logo-text strong{
+    display:block;
+    font-family: var(--font-display);
+    font-size: 1.05rem;
+    color: var(--olive-deep);
+  }
+  .logo-text span{
+    display:block;
+    font-size: .68rem;
+    letter-spacing:.1em;
+    text-transform: uppercase;
+    color: var(--olive-mid);
+  }
+  .nav .btn{ padding: .7em 1.3em; font-size:.85rem; }
+
+  /* ---------- hero ---------- */
+  .hero{
+    padding: clamp(48px, 8vw, 96px) 0 clamp(40px,6vw,72px);
+  }
+  .hero .wrap{
+    display:grid;
+    grid-template-columns: 1.15fr .85fr;
+    gap: clamp(32px, 6vw, 72px);
+    align-items:center;
+  }
+  .hero h1{
+    font-size: clamp(2.1rem, 4.4vw, 3.3rem);
+    margin-top:.35em;
+  }
+  .hero .lede{
+    font-size: 1.08rem;
+    max-width: 46ch;
+    color: var(--olive-deep);
+    opacity:.85;
+  }
+  .hero .actions{
+    display:flex;
+    flex-wrap:wrap;
+    gap: 14px;
+    margin-top: 1.6em;
+  }
+  .hero .pin-line{
+    display:flex;
+    align-items:center;
+    gap:.5em;
+    margin-top: 1.6em;
+    font-size:.88rem;
+    color: var(--olive-mid);
+    font-weight:500;
+  }
+  .hero .pin-line svg{ width:16px; height:16px; }
+
+  .hero-photo{
+    position:relative;
+    justify-self:center;
+  }
+  .photo-ring{
+    width: min(320px, 78vw);
+    aspect-ratio: 1/1;
+    border-radius:50%;
+    padding: 7px;
+    background: conic-gradient(from 210deg, var(--gold), var(--rust), var(--olive-deep), var(--olive-soft), var(--gold));
+  }
+  .photo-frame{
+    width:100%; height:100%;
+    border-radius:50%;
+    background: var(--cream-2);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    overflow:hidden;
+  }
+  .photo-frame svg{ width:42%; height:42%; color: var(--olive-mid); opacity:.55; }
+  img.photo-frame{ object-fit: cover; }
+
+  .sticker{
+    position:absolute;
+    background: var(--cream);
+    border: 1px solid rgba(42,35,24,.12);
+    padding: .5em 1em;
+    border-radius: 999px;
+    font-weight:600;
+    font-size: .78rem;
+    box-shadow: 3px 4px 0 rgba(42,35,24,.1);
+    white-space:nowrap;
+  }
+  .sticker-1{ top: 6%; right: -4%; transform: rotate(-6deg); color: var(--rust); }
+  .sticker-2{ bottom: 2%; left: -6%; transform: rotate(4deg); color: var(--olive-deep); }
+
+  .logo-img{
+    height: 42px;
+    width: auto;
+    display:block;
+  }
+
+  .seal-badge{
+    position:absolute;
+    width: 96px;
+    height: 96px;
+    right: -6%;
+    bottom: -9%;
+    transform: rotate(6deg);
+    filter: drop-shadow(0 8px 16px rgba(42,35,24,.22));
+  }
+
+  /* ---------- especialidades ---------- */
+  .section{ padding: clamp(48px,7vw,84px) 0; }
+  .section-head{ max-width: 60ch; margin-bottom: clamp(28px,4vw,44px); }
+  .section-head h2{ font-size: clamp(1.7rem, 3vw, 2.3rem); }
+
+  .cards{
+    display:grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 22px;
+  }
+  .card{
+    background: var(--cream-2);
+    border-radius: var(--radius);
+    padding: 1.9em 1.7em;
+    transition: transform .22s ease, box-shadow .22s ease;
+    box-shadow: 4px 6px 0 rgba(42,35,24,.06);
+  }
+  .card:nth-child(1){ transform: rotate(-1.4deg); }
+  .card:nth-child(2){ transform: rotate(1deg); }
+  .card:nth-child(3){ transform: rotate(-0.6deg); }
+  .card:hover{ transform: rotate(0deg) translateY(-4px); box-shadow: 6px 10px 0 rgba(42,35,24,.1); }
+  .card .tag{
+    display:inline-block;
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: 1.35rem;
+    color: var(--rust);
+    margin-bottom:.3em;
+  }
+  .card p{ color: var(--olive-deep); opacity:.85; font-size: .95rem; margin:0; }
+
+  /* ---------- sobre ---------- */
+  .sobre{ background: var(--olive-deep); color: var(--cream); }
+  .sobre h2{ color: var(--cream); }
+  .sobre .wrap{
+    display:grid;
+    grid-template-columns: .8fr 1.2fr;
+    gap: clamp(32px,6vw,72px);
+    align-items:center;
+  }
+  .sobre .photo-ring{
+    background: conic-gradient(from 120deg, var(--gold), var(--olive-soft), var(--cream), var(--gold));
+  }
+  .sobre .photo-frame{ background: rgba(244,238,221,.12); }
+  .sobre .photo-frame svg{ color: var(--cream); opacity:.5; }
+  .sobre p{ color: var(--cream); opacity:.88; }
+  .credential{
+    display:flex;
+    flex-wrap:wrap;
+    gap: 10px 28px;
+    margin-top: 1.4em;
+    font-size: .88rem;
+  }
+  .credential div{ display:flex; align-items:center; gap:.5em; opacity:.9; }
+  .credential svg{ width:16px; height:16px; flex-shrink:0; }
+
+  /* ---------- processo ---------- */
+  .steps{
+    display:grid;
+    grid-template-columns: repeat(3,1fr);
+    gap: 22px;
+    counter-reset: step;
+  }
+  .step{
+    position:relative;
+    padding-top: 2.2em;
+  }
+  .step::before{
+    counter-increment: step;
+    content: counter(step);
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: 2.1rem;
+    color: var(--gold);
+    display:block;
+    margin-bottom:.2em;
+  }
+  .step h3{ font-size: 1.15rem; margin-bottom:.25em; }
+  .step p{ font-size: .92rem; opacity:.8; margin:0; }
+  .step:not(:last-child)::after{
+    content:"";
+    position:absolute;
+    top: 2.6em; right: -11%;
+    width: 22%;
+    border-top: 1.5px dashed var(--olive-soft);
+    display:none;
+  }
+  @media (min-width: 820px){
+    .step:not(:last-child)::after{ display:block; }
+  }
+
+  /* ---------- instagram ---------- */
+  .instagram{
+    background: var(--cream-2);
+    border-radius: var(--radius);
+    padding: clamp(32px,5vw,54px);
+    display:flex;
+    flex-wrap:wrap;
+    align-items:center;
+    justify-content:space-between;
+    gap: 28px;
+  }
+  .instagram .handle{
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    color: var(--olive-deep);
+  }
+  .instagram .meta{ font-size: .88rem; color: var(--olive-mid); margin-top:.2em; }
+  .bubbles{
+    display:flex;
+    gap: 14px;
+  }
+  .bubble{
+    width: 54px; height:54px;
+    border-radius:50%;
+    background: var(--olive-soft);
+    border: 2px solid var(--olive-deep);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+  }
+  .bubble svg{ width:22px; height:22px; color: var(--olive-deep); }
+
+  /* ---------- cta final ---------- */
+  .cta-final{
+    text-align:center;
+    padding: clamp(56px,8vw,96px) 0;
+  }
+  .cta-final h2{ font-size: clamp(1.9rem,4vw,2.7rem); }
+  .cta-final .lede{ max-width: 50ch; margin: 0 auto 1.6em; color: var(--olive-deep); opacity:.8; }
+
+  /* ---------- footer ---------- */
+  footer{
+    background: var(--ink);
+    color: var(--cream-2);
+    padding: 40px 0 28px;
+  }
+  footer .wrap{
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:space-between;
+    gap: 20px;
+    font-size: .85rem;
+  }
+  footer .foot-links{ display:flex; gap: 20px; }
+  footer .foot-links a{ text-decoration:none; opacity:.85; }
+  footer .foot-links a:hover{ opacity:1; text-decoration: underline; }
+  footer .copy{ opacity:.55; margin-top: 18px; font-size: .78rem; }
+
+  /* ---------- whatsapp float ---------- */
+  .wa-float{
+    position: fixed;
+    right: 20px; bottom: 20px;
+    z-index: 50;
+    background: var(--olive-deep);
+    color: var(--cream);
+    width: 58px; height:58px;
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-decoration:none;
+    box-shadow: 0 10px 24px rgba(0,0,0,.28);
+    transition: transform .18s ease;
+  }
+  .wa-float:hover{ transform: scale(1.08); }
+  .wa-float svg{ width:26px; height:26px; }
+
+  /* ---------- reveal on scroll ---------- */
+  .reveal{
+    opacity:0;
+    transform: translateY(16px);
+    transition: opacity .6s ease, transform .6s ease;
+  }
+  .reveal.is-visible{ opacity:1; transform:none; }
+
+  @media (prefers-reduced-motion: reduce){
+    *{ transition:none !important; scroll-behavior:auto !important; }
+    .reveal{ opacity:1; transform:none; }
+  }
+
+  /* ---------- responsive ---------- */
+  @media (max-width: 900px){
+    .hero .wrap{ grid-template-columns: 1fr; }
+    .hero-photo{ order:-1; }
+    .sobre .wrap{ grid-template-columns: 1fr; }
+    .cards{ grid-template-columns: 1fr; }
+    .steps{ grid-template-columns: 1fr; }
+    .card:nth-child(1),.card:nth-child(2),.card:nth-child(3){ transform:none; }
+  }
+  @media (max-width: 480px){
+    .logo-img{ height: 32px; }
+    .sticker{ display:none; }
+    .seal-badge{ width: 68px; height: 68px; right: -2%; bottom: -4%; }
+  }
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="wrap">
+    <a class="logo" href="#topo">
+      <img src="logo-barbara-milesi.png" alt="Bárbara Milesi Nutricionista" class="logo-img">
+    </a>
+    <a class="btn btn-primary" href="https://wa.me/message/CWWRZWWU732YD1?text=Oi%20B%C3%A1rbara!%20Vi%20teu%20site%20e%20queria%20agendar%20uma%20consulta." target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.5 8.5 0 0 1-8.5 8.5 8.4 8.4 0 0 1-4-1L3 20l1-5.5A8.5 8.5 0 1 1 21 11.5Z"/></svg>
+      Agendar
+    </a>
+  </div>
+</header>
+
+<section class="hero" id="topo">
+  <div class="wrap">
+    <div class="hero-text reveal">
+      <span class="eyebrow">Nutricionista · CRN2 21670D</span>
+      <h1>Eu resgato tua autoestima.<br><em>Tu atinges</em> tua melhor versão.</h1>
+      <p class="lede">Acompanhamento nutricional em estética, performance e patologias — com plano de alimentação que cabe na tua rotina de verdade, sem dieta da moda e sem culpa.</p>
+      <div class="actions">
+        <a class="btn btn-primary" href="https://wa.me/message/CWWRZWWU732YD1?text=Oi%20B%C3%A1rbara!%20Vi%20teu%20site%20e%20queria%20agendar%20uma%20consulta." target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.5 8.5 0 0 1-8.5 8.5 8.4 8.4 0 0 1-4-1L3 20l1-5.5A8.5 8.5 0 1 1 21 11.5Z"/></svg>
+          Agendar consulta pelo WhatsApp
+        </a>
+        <a class="btn btn-ghost" href="https://instagram.com/nutri.barbaram" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/></svg>
+          Ver Instagram
+        </a>
+      </div>
+      <div class="pin-line">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s-7-6.2-7-11a7 7 0 1 1 14 0c0 4.8-7 11-7 11Z"/><circle cx="12" cy="10" r="2.4"/></svg>
+        Atendimento presencial (Zona Sul e Zona Norte de Porto Alegre) ou online
+      </div>
+    </div>
+
+    <div class="hero-photo reveal">
+      <div class="photo-ring">
+        <img src="foto-barbara-milesi.jpg" alt="Bárbara Milesi, nutricionista" class="photo-frame">
+      </div>
+      <span class="sticker sticker-1">✨ Atendimento personalizado</span>
+      <span class="sticker sticker-2">📍 Porto Alegre</span>
+      <img src="selo-barbara-milesi.png" alt="Selo Bárbara Milesi Nutricionista" class="seal-badge">
+    </div>
+  </div>
+</section>
+
+<section class="section" id="especialidades">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Especialidades</span>
+      <h2>Como eu posso te ajudar</h2>
+    </div>
+    <div class="cards reveal">
+      <div class="card">
+        <span class="tag">Estética</span>
+        <p>Composição corporal, resultados visíveis no espelho e autoestima em dia.</p>
+      </div>
+      <div class="card">
+        <span class="tag">Performance</span>
+        <p>Estratégia alimentar pra rendimento no treino, recuperação e energia no dia a dia.</p>
+      </div>
+      <div class="card">
+        <span class="tag">Patologias</span>
+        <p>Acompanhamento nutricional cuidadoso pra condições clínicas específicas.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section sobre" id="sobre">
+  <div class="wrap">
+    <div class="hero-photo reveal">
+      <div class="photo-ring">
+        <img src="foto-barbara-milesi.jpg" alt="Bárbara Milesi, nutricionista" class="photo-frame">
+      </div>
+    </div>
+    <div class="reveal">
+      <span class="eyebrow">Quem te acompanha</span>
+      <h2>Comida boa não tem culpa.</h2>
+      <p>Sou a Bárbara, nutricionista, e acredito que o plano certo é aquele que cabe na tua vida — sem restrições impossíveis de sustentar. Cada acompanhamento é pensado pro teu objetivo: seja estética, performance ou uma condição de saúde específica.</p>
+      <div class="credential">
+        <div>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2 3 7l9 5 9-5-9-5Z"/><path d="M3 12l9 5 9-5"/></svg>
+          CRN2 21670D
+        </div>
+        <div>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s-7-6.2-7-11a7 7 0 1 1 14 0c0 4.8-7 11-7 11Z"/><circle cx="12" cy="10" r="2.4"/></svg>
+          Zona Sul e Zona Norte de Porto Alegre
+        </div>
+        <div>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="17" rx="2"/><path d="M3 9h18M8 3v4M16 3v4"/></svg>
+          Presencial e online
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="como-funciona">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Como funciona</span>
+      <h2>Do primeiro contato à primeira consulta</h2>
+    </div>
+    <div class="steps reveal">
+      <div class="step">
+        <h3>Envie uma mensagem</h3>
+        <p>Manda uma mensagem contando um pouco do que tu precisa.</p>
+      </div>
+      <div class="step">
+        <h3>Combinamos o horário</h3>
+        <p>A gente encontra o melhor dia pra tua agenda, presencial ou online.</p>
+      </div>
+      <div class="step">
+        <h3>Primeira consulta</h3>
+        <p>Montamos um plano alimentar que faz sentido pra tua rotina.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="instagram">
+  <div class="wrap">
+    <div class="instagram reveal">
+      <div>
+        <span class="eyebrow">Segue lá</span>
+        <div class="handle">@nutri.barbaram</div>
+        <div class="meta">Bastidores do consultório, receitas e dicas de alimentação</div>
+      </div>
+      <div class="bubbles" aria-hidden="true">
+        <div class="bubble"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 21V8l8-5 8 5v13"/><path d="M9 21v-7h6v7"/></svg></div>
+        <div class="bubble"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21a8 8 0 1 0-16 0"/><circle cx="12" cy="8" r="4"/></svg></div>
+        <div class="bubble"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12l2-8h14l2 8M3 12v7a1 1 0 0 0 1 1h16a1 1 0 0 0 1-1v-7M3 12h18"/></svg></div>
+      </div>
+      <a class="btn btn-primary" href="https://instagram.com/nutri.barbaram" target="_blank" rel="noopener">Seguir no Instagram</a>
+    </div>
+  </div>
+</section>
+
+<section class="cta-final">
+  <div class="wrap reveal">
+    <span class="eyebrow" style="justify-content:center">Vamos começar?</span>
+    <h2>Tua melhor versão te espera.</h2>
+    <p class="lede">Chama no WhatsApp e marca teu primeiro atendimento — sem compromisso.</p>
+    <a class="btn btn-primary" href="https://wa.me/message/CWWRZWWU732YD1?text=Oi%20B%C3%A1rbara!%20Vi%20teu%20site%20e%20queria%20agendar%20uma%20consulta." target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.5 8.5 0 0 1-8.5 8.5 8.4 8.4 0 0 1-4-1L3 20l1-5.5A8.5 8.5 0 1 1 21 11.5Z"/></svg>
+      Agendar consulta agora
+    </a>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div>
+      <strong style="font-family:var(--font-display); font-size:1.1rem; color:var(--cream);">Bárbara Milesi</strong>
+      <div style="opacity:.7; margin-top:.3em;">Nutricionista · CRN2 21670D · Porto Alegre, RS</div>
+      <div class="copy">Site feito pra facilitar teu agendamento — link direto pela bio do Instagram.</div>
+    </div>
+    <div class="foot-links">
+      <a href="https://instagram.com/nutri.barbaram" target="_blank" rel="noopener">Instagram</a>
+      <a href="https://wa.me/message/CWWRZWWU732YD1" target="_blank" rel="noopener">WhatsApp</a>
+    </div>
+  </div>
+</footer>
+
+<a class="wa-float" href="https://wa.me/message/CWWRZWWU732YD1?text=Oi%20B%C3%A1rbara!%20Vi%20teu%20site%20e%20queria%20agendar%20uma%20consulta." target="_blank" rel="noopener" aria-label="Agendar pelo WhatsApp">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.5 8.5 0 0 1-8.5 8.5 8.4 8.4 0 0 1-4-1L3 20l1-5.5A8.5 8.5 0 1 1 21 11.5Z"/></svg>
+</a>
+
+<script>
+  const els = document.querySelectorAll('.reveal');
+  if('IntersectionObserver' in window){
+    const io = new IntersectionObserver((entries)=>{
+      entries.forEach(e=>{
+        if(e.isIntersecting){ e.target.classList.add('is-visible'); io.unobserve(e.target); }
+      });
+    }, { threshold: .15 });
+    els.forEach(el => io.observe(el));
+  } else {
+    els.forEach(el => el.classList.add('is-visible'));
+  }
+</script>
+
+</body>
+</html>
