@@ -344,6 +344,45 @@
     color: var(--olive-deep);
   }
 
+  .testimonial-form{
+    background: var(--cream-2);
+    border-radius: var(--radius);
+    padding: 1.8em 1.8em 2em;
+    margin-top: 28px;
+    max-width: 560px;
+  }
+  .testimonial-form h3{
+    font-family: var(--font-display);
+    font-size: 1.3rem;
+    color: var(--olive-deep);
+    margin: .2em 0 .8em;
+  }
+  .testimonial-form .form-row{ margin-bottom: 1.1em; display:flex; flex-direction:column; gap:.4em; }
+  .testimonial-form label{ font-weight:600; font-size:.85rem; color: var(--olive-deep); }
+  .testimonial-form input[type="text"],
+  .testimonial-form textarea{
+    font-family: var(--font-body);
+    font-size: .95rem;
+    padding: .7em .9em;
+    border-radius: 10px;
+    border: 1.5px solid rgba(69,78,60,.25);
+    background: var(--cream);
+    color: var(--ink);
+    resize: vertical;
+  }
+  .testimonial-form input[type="text"]:focus,
+  .testimonial-form textarea:focus{ outline: 2px solid var(--gold); border-color: var(--gold); }
+  .star-input{ display:flex; flex-direction:row-reverse; justify-content:flex-end; gap:4px; }
+  .star-input input{ position:absolute; opacity:0; width:1px; height:1px; }
+  .star-input label{ font-size: 1.9rem; line-height:1; color: var(--olive-soft); cursor:pointer; transition: color .15s ease; }
+  .star-input label:hover,
+  .star-input label:hover ~ label,
+  .star-input input:checked ~ label{ color: var(--gold); }
+  .hp-field{ position:absolute; left:-9999px; width:1px; height:1px; overflow:hidden; }
+  .form-msg{ margin: .8em 0 0; font-size: .85rem; min-height: 1.2em; }
+  .form-msg.success{ color: var(--olive-deep); font-weight:600; }
+  .form-msg.error{ color: var(--rust); font-weight:600; }
+
   /* ---------- sobre ---------- */
   .sobre{ background: var(--olive-deep); color: var(--cream); }
   .sobre h2{ color: var(--cream); }
@@ -1008,22 +1047,13 @@
   </div>
 </section>
 
-<!--
-  DEPOIMENTOS: os 5 cards abaixo são EXEMPLOS fictícios, só pra mostrar o layout.
-  Troque pelos depoimentos reais assim que tiver — pra cada card:
-  1) ESTRELAS: conte quantos "★" (cheia) e "☆" (vazia) até somar 5 no total.
-  2) TEXTO: troque a frase dentro de <p class="testimonial-quote">.
-  3) AUTOR: se o paciente topar usar o nome, coloque nome + inicial do sobrenome (ex: "Mariana R.").
-     Se preferir anônimo, use algo como "Paciente há 8 meses" (sem nome).
-  4) Pra adicionar mais depoimentos, copie um bloco <article class="testimonial-card">...</article> inteiro.
--->
 <section class="section" id="depoimentos">
   <div class="wrap">
     <div class="section-head reveal">
       <span class="eyebrow">Depoimentos</span>
       <h2>O que dizem os pacientes</h2>
     </div>
-    <div class="testimonial-grid reveal">
+    <div class="testimonial-grid reveal" id="testimonialGrid">
 
       <article class="testimonial-card">
         <div class="stars" aria-label="5 de 5 estrelas">★★★★★</div>
@@ -1056,6 +1086,35 @@
       </article>
 
     </div>
+
+    <form id="testimonialForm" class="testimonial-form">
+      <span class="eyebrow">Deixe seu depoimento</span>
+      <h3>Já foi paciente? Conta como foi.</h3>
+      <div class="form-row">
+        <label for="tf-autor">Seu nome (opcional)</label>
+        <input type="text" id="tf-autor" name="autor" placeholder="Deixe em branco pra ficar anônimo(a)" maxlength="60">
+      </div>
+      <div class="form-row">
+        <label>Sua nota</label>
+        <div class="star-input">
+          <input type="radio" name="estrelas" id="r5" value="5"><label for="r5" title="5 estrelas">★</label>
+          <input type="radio" name="estrelas" id="r4" value="4"><label for="r4" title="4 estrelas">★</label>
+          <input type="radio" name="estrelas" id="r3" value="3"><label for="r3" title="3 estrelas">★</label>
+          <input type="radio" name="estrelas" id="r2" value="2"><label for="r2" title="2 estrelas">★</label>
+          <input type="radio" name="estrelas" id="r1" value="1"><label for="r1" title="1 estrela">★</label>
+        </div>
+      </div>
+      <div class="form-row">
+        <label for="tf-texto">Seu depoimento</label>
+        <textarea id="tf-texto" name="texto" rows="3" maxlength="500" placeholder="Conta como foi sua experiência..." required></textarea>
+      </div>
+      <div class="hp-field" aria-hidden="true">
+        <label for="tf-website">Não preencha este campo</label>
+        <input type="text" id="tf-website" name="website" tabindex="-1" autocomplete="off">
+      </div>
+      <button type="submit" class="btn btn-primary">Enviar depoimento</button>
+      <p id="testimonialFormMsg" class="form-msg" role="status"></p>
+    </form>
   </div>
 </section>
 
@@ -1094,6 +1153,7 @@
   <img src="" alt="Sumário do e-book" id="lightboxImg">
 </div>
 
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
   const els = document.querySelectorAll('.reveal');
   if('IntersectionObserver' in window){
@@ -1181,6 +1241,103 @@
     if(e.target.id === 'lightbox' || e.target.classList.contains('lightbox-close')){
       document.getElementById('lightbox').classList.remove('open');
     }
+  }
+
+  // ---------- depoimentos: Supabase ----------
+  // TODO: cole aqui a URL e a chave "anon public" do teu projeto Supabase (Settings > API)
+  const SUPABASE_URL = 'https://emelyojyelxpwnlnmjgi.supabase.co';
+  const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImVtZWx5b2p5ZWx4cHdubG5tamdpIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODUwMDM2NTIsImV4cCI6MjEwMDU3OTY1Mn0.Vc6eo1FYHRz8fPK03XXsj7mBUboO3xzWumbpHXSa8KA';
+
+  let supabaseClient = null;
+  if(SUPABASE_URL.startsWith('http') && window.supabase){
+    supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+  }
+
+  function escapeHTML(str){
+    const div = document.createElement('div');
+    div.textContent = str;
+    return div.innerHTML;
+  }
+
+  function renderStars(n){
+    return '★'.repeat(n) + '☆'.repeat(5 - n);
+  }
+
+  function testimonialCardHTML(t){
+    const author = (t.autor && t.autor.trim()) ? escapeHTML(t.autor) : 'Paciente anônimo(a)';
+    return `<article class="testimonial-card">
+      <div class="stars" aria-label="${t.estrelas} de 5 estrelas">${renderStars(t.estrelas)}</div>
+      <p class="testimonial-quote">${escapeHTML(t.texto)}</p>
+      <span class="testimonial-author">${author}</span>
+    </article>`;
+  }
+
+  async function loadTestimonials(){
+    if(!supabaseClient) return; // mantém os exemplos fixos do HTML como fallback
+    const grid = document.getElementById('testimonialGrid');
+    const { data, error } = await supabaseClient
+      .from('depoimentos')
+      .select('autor, estrelas, texto, created_at')
+      .eq('aprovado', true)
+      .order('created_at', { ascending: false });
+    if(error || !data || data.length === 0) return; // mantém os exemplos fixos
+    grid.innerHTML = data.map(testimonialCardHTML).join('');
+  }
+  loadTestimonials();
+
+  const testimonialForm = document.getElementById('testimonialForm');
+  if(testimonialForm){
+    testimonialForm.addEventListener('submit', async function(e){
+      e.preventDefault();
+      const form = e.target;
+      const msgEl = document.getElementById('testimonialFormMsg');
+
+      // honeypot: se um bot preencher esse campo escondido, finge sucesso e não envia nada
+      if(form.website.value){
+        form.reset();
+        msgEl.textContent = 'Obrigada pelo depoimento! Assim que for aprovado, ele aparece aqui na página. 💛';
+        msgEl.className = 'form-msg success';
+        return;
+      }
+
+      const autor = form.autor.value.trim();
+      const estrelasInput = form.querySelector('input[name="estrelas"]:checked');
+      const texto = form.texto.value.trim();
+
+      if(!estrelasInput || !texto){
+        msgEl.textContent = 'Escolha uma nota e escreva um comentário antes de enviar.';
+        msgEl.className = 'form-msg error';
+        return;
+      }
+      if(!supabaseClient){
+        msgEl.textContent = 'Formulário ainda não está conectado. Tente de novo mais tarde.';
+        msgEl.className = 'form-msg error';
+        return;
+      }
+
+      const submitBtn = form.querySelector('button[type="submit"]');
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Enviando...';
+
+      const { error } = await supabaseClient.from('depoimentos').insert({
+        autor: autor || null,
+        estrelas: Number(estrelasInput.value),
+        texto: texto,
+        aprovado: false
+      });
+
+      submitBtn.disabled = false;
+      submitBtn.textContent = 'Enviar depoimento';
+
+      if(error){
+        msgEl.textContent = 'Não deu pra enviar agora. Tente de novo em instantes.';
+        msgEl.className = 'form-msg error';
+      } else {
+        form.reset();
+        msgEl.textContent = 'Obrigada pelo depoimento! Assim que for aprovado, ele aparece aqui na página. 💛';
+        msgEl.className = 'form-msg success';
+      }
+    });
   }
 </script>
 
