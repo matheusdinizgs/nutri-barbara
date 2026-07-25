@@ -298,6 +298,52 @@
   }
   .card p{ color: var(--olive-deep); opacity:.85; font-size: .95rem; margin:0; }
 
+  /* ---------- depoimentos ---------- */
+  .testimonial-grid{
+    display:grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px,1fr));
+    gap: 22px;
+  }
+  .testimonial-card{
+    background: var(--cream-2);
+    border-radius: var(--radius);
+    padding: 2em 1.6em 1.6em;
+    position:relative;
+    overflow:hidden;
+    display:flex;
+    flex-direction:column;
+    gap: .7em;
+  }
+  .testimonial-card::before{
+    content:"\201C";
+    position:absolute;
+    top: -.15em; left: .25em;
+    font-family: var(--font-display);
+    font-size: 5rem;
+    color: var(--olive-soft);
+    opacity: .6;
+    line-height:1;
+    z-index:0;
+  }
+  .testimonial-card > *{ position:relative; z-index:1; }
+  .testimonial-card .stars{
+    color: var(--gold);
+    font-size: 1rem;
+    letter-spacing: .12em;
+  }
+  .testimonial-quote{
+    font-size: .95rem;
+    color: var(--olive-deep);
+    opacity: .88;
+    margin:0;
+    flex-grow:1;
+  }
+  .testimonial-author{
+    font-weight:700;
+    font-size:.85rem;
+    color: var(--olive-deep);
+  }
+
   /* ---------- sobre ---------- */
   .sobre{ background: var(--olive-deep); color: var(--cream); }
   .sobre h2{ color: var(--cream); }
@@ -313,6 +359,38 @@
   .sobre .photo-frame{ background: rgba(244,238,221,.12); }
   .sobre .photo-frame svg{ color: var(--cream); opacity:.5; }
   .sobre p{ color: var(--cream); opacity:.88; }
+  .acompanhamento-block{
+    grid-column: 1 / -1;
+    margin-top: clamp(28px,4vw,44px);
+    padding-top: clamp(28px,4vw,40px);
+    border-top: 1px solid rgba(244,238,221,.18);
+  }
+  .acompanhamento-intro{
+    max-width: 62ch;
+    margin-bottom: 1.3em !important;
+  }
+  .acompanhamento-list{
+    list-style:none;
+    margin:0; padding:0;
+    display:grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: .9em 2.5em;
+  }
+  .acompanhamento-list li{
+    display:flex;
+    align-items:flex-start;
+    gap: .6em;
+    color: var(--cream);
+    opacity:.92;
+    font-size:.95rem;
+    line-height:1.4;
+  }
+  .acompanhamento-list svg{
+    width:20px; height:20px;
+    flex-shrink:0;
+    margin-top:.15em;
+    color: var(--gold);
+  }
   .credential{
     display:flex;
     flex-wrap:wrap;
@@ -624,6 +702,7 @@
     .hero .wrap{ grid-template-columns: 1fr; }
     .hero-photo{ order:-1; }
     .sobre .wrap{ grid-template-columns: 1fr; }
+    .acompanhamento-list{ grid-template-columns: 1fr; }
     .cards{ grid-template-columns: 1fr; }
     .steps{ grid-template-columns: 1fr; }
     .card:nth-child(1),.card:nth-child(2),.card:nth-child(3){ transform:none; }
@@ -647,6 +726,7 @@
       <img src="imagens/logo-barbara-milesi.png" alt="Bárbara Milesi Nutricionista" class="logo-img">
     </a>
     <div class="nav-right">
+      <a class="nav-link" href="#depoimentos">Depoimentos</a>
       <a class="nav-link" href="#ebooks">E-books</a>
       <a class="btn btn-primary" href="https://wa.me/5551993998011?text=Oi%2C%20B%C3%A1rbara%21%0AVi%20seu%20site%20e%20gostaria%20de%20saber%20mais%20sobre%20o%20acompanhamento" target="_blank" rel="noopener">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.5 8.5 0 0 1-8.5 8.5 8.4 8.4 0 0 1-4-1L3 20l1-5.5A8.5 8.5 0 1 1 21 11.5Z"/></svg>
@@ -722,7 +802,7 @@
     <div class="reveal">
       <span class="eyebrow">Quem te acompanha</span>
       <h2>Comida boa não tem culpa.</h2>
-      <p>Sou a Bárbara, nutricionista, e acredito que o plano certo é aquele que cabe na sua vida — sem restrições impossíveis de sustentar. Cada acompanhamento é pensado pro seu objetivo: seja estética, performance ou uma condição de saúde específica.</p>
+      <p>Sou a Bárbara, nutricionista formada pela UFCSPA, com pós-graduação em Nutrição Clínica, Hospitalar e Ambulatorial. Tenho amplo conhecimento nas áreas esportiva, diabetes, hipertensão, bariátrica, emagrecimento, reeducação alimentar e pós-operatório. Meu principal objetivo é te ajudar na mudança de hábitos alimentares, baseado em evidência científica, para que você alcance seus objetivos de uma maneira leve e respeitando o processo.</p>
       <div class="credential">
         <div>
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2 3 7l9 5 9-5-9-5Z"/><path d="M3 12l9 5 9-5"/></svg>
@@ -737,6 +817,79 @@
           Presencial e online
         </div>
       </div>
+    </div>
+
+    <div class="acompanhamento-block reveal">
+      <span class="eyebrow">Pra quem é</span>
+      <h2>Pra quem é esse acompanhamento</h2>
+      <p class="acompanhamento-intro">Se você quer mudança duradoura, sustentável e sem extremismo. No acompanhamento trabalhamos estratégias individualizadas, com orientação de verdade e adaptadas para a sua realidade.</p>
+      <ul class="acompanhamento-list">
+        <li>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="m8 12.5 2.5 2.5L16 9"/></svg>
+          Mulheres que buscam retomar a autoestima
+        </li>
+        <li>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="m8 12.5 2.5 2.5L16 9"/></svg>
+          Para melhorar sua relação com a comida
+        </li>
+        <li>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="m8 12.5 2.5 2.5L16 9"/></svg>
+          Quem já tentou fórmulas mágicas e viu que não é bem assim
+        </li>
+        <li>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="m8 12.5 2.5 2.5L16 9"/></svg>
+          Busca por performance esportiva
+        </li>
+        <li>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="m8 12.5 2.5 2.5L16 9"/></svg>
+          Longevidade, para viver a vida sem dores
+        </li>
+        <li>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="m8 12.5 2.5 2.5L16 9"/></svg>
+          Para complementar o tratamento de alguma questão de saúde, desde pós-operatórios até doença autoimune
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="como-funciona">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Como funciona</span>
+      <h2>Do primeiro contato à primeira consulta</h2>
+    </div>
+    <div class="steps reveal">
+      <div class="step">
+        <h3>Envie uma mensagem</h3>
+        <p>Mande uma mensagem contando um pouco do que você precisa.</p>
+      </div>
+      <div class="step">
+        <h3>Combinamos o horário</h3>
+        <p>A gente encontra o melhor dia pra sua agenda, presencial ou online.</p>
+      </div>
+      <div class="step">
+        <h3>Primeira consulta</h3>
+        <p>Montamos um plano alimentar que faz sentido pra sua rotina.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="instagram">
+  <div class="wrap">
+    <div class="instagram reveal">
+      <div>
+        <span class="eyebrow">Segue lá</span>
+        <div class="handle">@nutri.barbaram</div>
+        <div class="meta">Bastidores do consultório, receitas e dicas de alimentação</div>
+      </div>
+      <div class="bubbles" aria-hidden="true">
+        <div class="bubble"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 21V8l8-5 8 5v13"/><path d="M9 21v-7h6v7"/></svg></div>
+        <div class="bubble"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21a8 8 0 1 0-16 0"/><circle cx="12" cy="8" r="4"/></svg></div>
+        <div class="bubble"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12l2-8h14l2 8M3 12v7a1 1 0 0 0 1 1h16a1 1 0 0 0 1-1v-7M3 12h18"/></svg></div>
+      </div>
+      <a class="btn btn-primary" href="https://instagram.com/nutri.barbaram" target="_blank" rel="noopener">Seguir no Instagram</a>
     </div>
   </div>
 </section>
@@ -855,43 +1008,53 @@
   </div>
 </section>
 
-<section class="section" id="como-funciona">
+<!--
+  DEPOIMENTOS: os 5 cards abaixo são EXEMPLOS fictícios, só pra mostrar o layout.
+  Troque pelos depoimentos reais assim que tiver — pra cada card:
+  1) ESTRELAS: conte quantos "★" (cheia) e "☆" (vazia) até somar 5 no total.
+  2) TEXTO: troque a frase dentro de <p class="testimonial-quote">.
+  3) AUTOR: se o paciente topar usar o nome, coloque nome + inicial do sobrenome (ex: "Mariana R.").
+     Se preferir anônimo, use algo como "Paciente há 8 meses" (sem nome).
+  4) Pra adicionar mais depoimentos, copie um bloco <article class="testimonial-card">...</article> inteiro.
+-->
+<section class="section" id="depoimentos">
   <div class="wrap">
     <div class="section-head reveal">
-      <span class="eyebrow">Como funciona</span>
-      <h2>Do primeiro contato à primeira consulta</h2>
+      <span class="eyebrow">Depoimentos</span>
+      <h2>O que dizem os pacientes</h2>
     </div>
-    <div class="steps reveal">
-      <div class="step">
-        <h3>Envie uma mensagem</h3>
-        <p>Mande uma mensagem contando um pouco do que você precisa.</p>
-      </div>
-      <div class="step">
-        <h3>Combinamos o horário</h3>
-        <p>A gente encontra o melhor dia pra sua agenda, presencial ou online.</p>
-      </div>
-      <div class="step">
-        <h3>Primeira consulta</h3>
-        <p>Montamos um plano alimentar que faz sentido pra sua rotina.</p>
-      </div>
-    </div>
-  </div>
-</section>
+    <div class="testimonial-grid reveal">
 
-<section class="section" id="instagram">
-  <div class="wrap">
-    <div class="instagram reveal">
-      <div>
-        <span class="eyebrow">Segue lá</span>
-        <div class="handle">@nutri.barbaram</div>
-        <div class="meta">Bastidores do consultório, receitas e dicas de alimentação</div>
-      </div>
-      <div class="bubbles" aria-hidden="true">
-        <div class="bubble"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 21V8l8-5 8 5v13"/><path d="M9 21v-7h6v7"/></svg></div>
-        <div class="bubble"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21a8 8 0 1 0-16 0"/><circle cx="12" cy="8" r="4"/></svg></div>
-        <div class="bubble"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12l2-8h14l2 8M3 12v7a1 1 0 0 0 1 1h16a1 1 0 0 0 1-1v-7M3 12h18"/></svg></div>
-      </div>
-      <a class="btn btn-primary" href="https://instagram.com/nutri.barbaram" target="_blank" rel="noopener">Seguir no Instagram</a>
+      <article class="testimonial-card">
+        <div class="stars" aria-label="5 de 5 estrelas">★★★★★</div>
+        <p class="testimonial-quote">A Bárbara não olha só pro peso. Ela entende a rotina de verdade, e isso mudou como eu enxergo a comida.</p>
+        <span class="testimonial-author">Mariana R.</span>
+      </article>
+
+      <article class="testimonial-card">
+        <div class="stars" aria-label="5 de 5 estrelas">★★★★★</div>
+        <p class="testimonial-quote">Depois de anos tentando dieta por conta própria, finalmente entendi como comer de um jeito que funciona pra mim.</p>
+        <span class="testimonial-author">Paciente há 8 meses</span>
+      </article>
+
+      <article class="testimonial-card">
+        <div class="stars" aria-label="5 de 5 estrelas">★★★★★</div>
+        <p class="testimonial-quote">Acompanhamento direto ao ponto, sem enrolação. Recomendo pra quem treina e quer resultado de verdade.</p>
+        <span class="testimonial-author">Lucas T.</span>
+      </article>
+
+      <article class="testimonial-card">
+        <div class="stars" aria-label="4 de 5 estrelas">★★★★☆</div>
+        <p class="testimonial-quote">Atendimento acolhedor, bem menos julgamento do que eu esperava. Só senti falta de mais horários disponíveis.</p>
+        <span class="testimonial-author">Paciente há 3 meses</span>
+      </article>
+
+      <article class="testimonial-card">
+        <div class="stars" aria-label="5 de 5 estrelas">★★★★★</div>
+        <p class="testimonial-quote">O plano se encaixou na minha rotina corrida, e isso fez toda diferença pra eu conseguir seguir em frente.</p>
+        <span class="testimonial-author">Camila S.</span>
+      </article>
+
     </div>
   </div>
 </section>
