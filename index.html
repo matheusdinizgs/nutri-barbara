@@ -646,6 +646,105 @@
     cursor:pointer;
   }
 
+  /* ---------- planos ---------- */
+  .plans-grid{
+    display:grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    margin-bottom: 28px;
+  }
+  .plan-card{
+    background: var(--cream-2);
+    border-radius: var(--radius);
+    padding: 1.9em 1.6em;
+    position:relative;
+    border: 2px solid transparent;
+  }
+  .plan-card h3{
+    font-size: 1.3rem;
+    margin-bottom:.3em;
+  }
+  .plan-desc{
+    font-size:.9rem;
+    color: var(--olive-deep);
+    opacity:.85;
+    margin-bottom: 1.2em;
+  }
+  .plan-includes{
+    list-style:none;
+    margin:0; padding:0;
+    display:flex;
+    flex-direction:column;
+    gap:.6em;
+  }
+  .plan-includes li{
+    display:flex;
+    align-items:flex-start;
+    gap:.55em;
+    font-size:.9rem;
+    color: var(--olive-deep);
+  }
+  .plan-includes svg{
+    width:18px; height:18px;
+    flex-shrink:0;
+    margin-top:.15em;
+    color: var(--gold);
+  }
+  .plan-card.best{
+    border-color: var(--gold);
+    background: var(--olive-deep);
+  }
+  .plan-card.best h3,
+  .plan-card.best .plan-desc,
+  .plan-card.best .plan-includes li{ color: var(--cream); }
+  .plan-card.best .plan-includes svg{ color: var(--gold); }
+  .plan-badge{
+    position:absolute;
+    top:-14px; left:50%;
+    transform:translateX(-50%);
+    background: var(--gold);
+    color: var(--ink);
+    font-size:.72rem;
+    font-weight:700;
+    padding:.4em 1em;
+    border-radius:999px;
+    white-space:nowrap;
+    box-shadow: 0 6px 14px rgba(42,35,24,.22);
+  }
+  .plan-shared{
+    background: var(--cream-2);
+    border-radius: var(--radius);
+    padding: 1.9em;
+  }
+  .plan-shared h3{
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: 1.2rem;
+    color: var(--olive-deep);
+    margin: 0 0 1em;
+  }
+  .plan-shared-list{
+    list-style:none;
+    margin:0; padding:0;
+    display:grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: .7em 2.2em;
+  }
+  .plan-shared-list li{
+    display:flex;
+    align-items:flex-start;
+    gap:.55em;
+    font-size:.9rem;
+    color: var(--olive-deep);
+    opacity:.9;
+  }
+  .plan-shared-list svg{
+    width:17px; height:17px;
+    flex-shrink:0;
+    margin-top:.15em;
+    color: var(--rust);
+  }
+
   /* ---------- instagram ---------- */
   .instagram{
     background: var(--cream-2);
@@ -744,6 +843,8 @@
     .acompanhamento-list{ grid-template-columns: 1fr; }
     .cards{ grid-template-columns: 1fr; }
     .steps{ grid-template-columns: 1fr; }
+    .plans-grid{ grid-template-columns: 1fr; }
+    .plan-shared-list{ grid-template-columns: 1fr; }
     .card:nth-child(1),.card:nth-child(2),.card:nth-child(3){ transform:none; }
     .price-ladder{ grid-template-columns: repeat(2, 1fr); }
     .ebook-summary{ position:static; flex-direction:column; align-items:stretch; text-align:center; }
@@ -765,6 +866,7 @@
       <img src="imagens/logo-barbara-milesi.png" alt="Bárbara Milesi Nutricionista" class="logo-img">
     </a>
     <div class="nav-right">
+      <a class="nav-link" href="#planos">Planos</a>
       <a class="nav-link" href="#depoimentos">Depoimentos</a>
       <a class="nav-link" href="#ebooks">E-books</a>
       <a class="btn btn-primary" href="https://wa.me/5551993998011?text=Oi%2C%20B%C3%A1rbara%21%0AVi%20seu%20site%20e%20gostaria%20de%20saber%20mais%20sobre%20o%20acompanhamento" target="_blank" rel="noopener">
@@ -817,15 +919,15 @@
     <div class="cards reveal">
       <div class="card">
         <span class="tag">Estética</span>
-        <p>Composição corporal, resultados visíveis no espelho e autoestima em dia.</p>
+        <p>Composição corporal, resultados visíveis no espelho e autoestima renovada.</p>
       </div>
       <div class="card">
         <span class="tag">Performance</span>
-        <p>Estratégia alimentar pra rendimento no treino, recuperação e energia no dia a dia.</p>
+        <p>Estratégia alimentar para rendimento no treino, recuperação e energia no dia a dia.</p>
       </div>
       <div class="card">
         <span class="tag">Patologias</span>
-        <p>Acompanhamento nutricional cuidadoso pra condições clínicas específicas.</p>
+        <p>Acompanhamento nutricional estratégico pra condições clínicas específicas.</p>
       </div>
     </div>
   </div>
@@ -840,7 +942,7 @@
     </div>
     <div class="reveal">
       <span class="eyebrow">Quem te acompanha</span>
-      <h2>Comida boa não tem culpa.</h2>
+      <h2>Quem sou eu?</h2>
       <p>Sou a Bárbara, nutricionista formada pela UFCSPA, com pós-graduação em Nutrição Clínica, Hospitalar e Ambulatorial. Tenho amplo conhecimento nas áreas esportiva, diabetes, hipertensão, bariátrica, emagrecimento, reeducação alimentar e pós-operatório. Meu principal objetivo é te ajudar na mudança de hábitos alimentares, baseado em evidência científica, para que você alcance seus objetivos de uma maneira leve e respeitando o processo.</p>
       <div class="credential">
         <div>
@@ -909,8 +1011,101 @@
       </div>
       <div class="step">
         <h3>Primeira consulta</h3>
-        <p>Montamos um plano alimentar que faz sentido pra sua rotina.</p>
+        <p>Desvendamos toda sua composição corporal, e você sai do consultório com todas as orientações e estratégias específicas para seu caso.</p>
       </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="planos">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Planos</span>
+      <h2>Encontre a opção que mais combina com o seu momento atual</h2>
+    </div>
+
+    <div class="plans-grid reveal">
+
+      <article class="plan-card">
+        <h3>Consulta avulsa</h3>
+        <p class="plan-desc">Para alinhar orientações iniciais e dar o primeiro passo.</p>
+        <ul class="plan-includes">
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="m8 12.5 2.5 2.5L16 9"/></svg>
+            1 consulta nutricional individual
+          </li>
+        </ul>
+      </article>
+
+      <article class="plan-card">
+        <h3>Plano trimestral</h3>
+        <p class="plan-desc">Se você já viu que precisa de um suporte mais próximo e contínuo.</p>
+        <ul class="plan-includes">
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="m8 12.5 2.5 2.5L16 9"/></svg>
+            3 consultas com intervalo de 30 dias
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="m8 12.5 2.5 2.5L16 9"/></svg>
+            Ecobag exclusiva
+          </li>
+        </ul>
+      </article>
+
+      <article class="plan-card best">
+        <span class="plan-badge">🏆 Melhor custo-benefício</span>
+        <h3>Plano semestral</h3>
+        <p class="plan-desc">Ideal para você que quer mudanças duradouras, e já entendeu que elas precisam de tempo.</p>
+        <ul class="plan-includes">
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="m8 12.5 2.5 2.5L16 9"/></svg>
+            6 consultas com intervalo de 30 dias
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="m8 12.5 2.5 2.5L16 9"/></svg>
+            Ecobag e brindes exclusivos
+          </li>
+        </ul>
+      </article>
+
+    </div>
+
+    <div class="plan-shared reveal">
+      <h3>Todas as modalidades incluem</h3>
+      <ul class="plan-shared-list">
+        <li>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="m8 12.5 2.5 2.5L16 9"/></svg>
+          Questionário pré-consulta
+        </li>
+        <li>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="m8 12.5 2.5 2.5L16 9"/></svg>
+          Tempo médio de 1h
+        </li>
+        <li>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="m8 12.5 2.5 2.5L16 9"/></svg>
+          Anamnese completa
+        </li>
+        <li>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="m8 12.5 2.5 2.5L16 9"/></svg>
+          E-books e materiais conforme necessidade
+        </li>
+        <li>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="m8 12.5 2.5 2.5L16 9"/></svg>
+          Suporte via WhatsApp
+        </li>
+        <li>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="m8 12.5 2.5 2.5L16 9"/></svg>
+          Análise ou solicitação de exames laboratoriais
+        </li>
+        <li>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="m8 12.5 2.5 2.5L16 9"/></svg>
+          Estabelecimento de metas
+        </li>
+        <li>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="m8 12.5 2.5 2.5L16 9"/></svg>
+          Plano alimentar individualizado
+        </li>
+      </ul>
     </div>
   </div>
 </section>
@@ -1244,7 +1439,6 @@
   }
 
   // ---------- depoimentos: Supabase ----------
-  // TODO: cole aqui a URL e a chave "anon public" do teu projeto Supabase (Settings > API)
   const SUPABASE_URL = 'https://emelyojyelxpwnlnmjgi.supabase.co';
   const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImVtZWx5b2p5ZWx4cHdubG5tamdpIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODUwMDM2NTIsImV4cCI6MjEwMDU3OTY1Mn0.Vc6eo1FYHRz8fPK03XXsj7mBUboO3xzWumbpHXSa8KA';
 
