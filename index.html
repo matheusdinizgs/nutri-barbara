@@ -166,6 +166,16 @@
     color: var(--olive-mid);
   }
   .nav .btn{ padding: .7em 1.3em; font-size:.85rem; }
+  .nav-right{ display:flex; align-items:center; gap: 22px; }
+  .nav-link{
+    font-weight:600;
+    font-size:.92rem;
+    color: var(--olive-deep);
+    text-decoration:none;
+    border-bottom: 2px solid transparent;
+    transition: border-color .18s ease;
+  }
+  .nav-link:hover{ border-color: var(--gold); }
 
   /* ---------- hero ---------- */
   .hero{
@@ -348,6 +358,177 @@
     .step:not(:last-child)::after{ display:block; }
   }
 
+  /* ---------- e-books ---------- */
+  .price-ladder{
+    display:grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 12px;
+    margin-bottom: clamp(32px,5vw,48px);
+  }
+  .price-step{
+    background: var(--cream-2);
+    border-radius: 16px;
+    padding: 1.1em .6em;
+    text-align:center;
+    position:relative;
+  }
+  .price-step .step-count{
+    display:block;
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: 1.05rem;
+    color: var(--olive-mid);
+    margin-bottom:.25em;
+  }
+  .price-step .step-total{
+    display:block;
+    font-weight:700;
+    font-size:1.05rem;
+    color: var(--olive-deep);
+  }
+  .price-step .step-unit{
+    display:block;
+    font-size:.7rem;
+    color: var(--olive-mid);
+    margin-top:.2em;
+  }
+  .price-step.best{ background: var(--olive-deep); }
+  .price-step.best .step-count,
+  .price-step.best .step-total,
+  .price-step.best .step-unit{ color: var(--cream); }
+  .price-step.best::before{
+    content:"🔥 melhor oferta";
+    position:absolute;
+    top:-11px; left:50%;
+    transform:translateX(-50%);
+    background: var(--gold);
+    color: var(--ink);
+    font-size:.6rem;
+    font-weight:700;
+    padding:.25em .7em;
+    border-radius:999px;
+    white-space:nowrap;
+  }
+
+  .ebook-grid{
+    display:grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px,1fr));
+    gap: 22px;
+    margin-bottom: 28px;
+  }
+  .ebook-card{
+    background: var(--cream-2);
+    border-radius: var(--radius);
+    padding: 1.2em;
+    display:flex;
+    flex-direction:column;
+    border: 2px solid transparent;
+    transition: box-shadow .2s ease, border-color .2s ease;
+  }
+  .ebook-card.selected{
+    border-color: var(--gold);
+    box-shadow: 0 10px 22px rgba(184,134,60,.2);
+  }
+  .ebook-cover{
+    border-radius: 12px;
+    overflow:hidden;
+    margin-bottom: .9em;
+    aspect-ratio: 3/4;
+    background: var(--cream);
+  }
+  .ebook-cover img{ width:100%; height:100%; object-fit:cover; display:block; }
+  .ebook-card h3{ font-size:1.02rem; margin-bottom:.35em; line-height:1.25; }
+  .ebook-desc{
+    font-size:.84rem;
+    color: var(--olive-deep);
+    opacity:.82;
+    flex-grow:1;
+    margin:0 0 1.1em;
+  }
+  .ebook-actions{ display:flex; flex-direction:column; gap:.6em; }
+  .btn-spoiler{
+    background:transparent;
+    border:1.5px solid var(--olive-mid);
+    color: var(--olive-deep);
+    border-radius:999px;
+    padding:.55em 1em;
+    font-size:.8rem;
+    font-weight:600;
+    cursor:pointer;
+    font-family: var(--font-body);
+    transition: background .18s ease;
+  }
+  .btn-spoiler:hover{ background: rgba(69,78,60,.08); }
+  .btn-spoiler:disabled{ opacity:.5; cursor:default; border-style:dashed; }
+  .btn-spoiler:disabled:hover{ background:transparent; }
+  .btn-add{
+    background: var(--olive-deep);
+    color: var(--cream);
+    border:none;
+    border-radius:999px;
+    padding:.6em 1em;
+    font-size:.85rem;
+    font-weight:700;
+    cursor:pointer;
+    font-family: var(--font-body);
+    transition: background .18s ease, transform .18s ease;
+  }
+  .btn-add:hover{ transform: translateY(-1px); }
+  .btn-add.active{ background: var(--gold); }
+
+  .ebook-summary{
+    position: sticky;
+    bottom: 16px;
+    background: var(--olive-deep);
+    color: var(--cream);
+    border-radius: 18px;
+    padding: 1.15em 1.5em;
+    display:flex;
+    flex-wrap:wrap;
+    align-items:center;
+    justify-content:space-between;
+    gap: 16px;
+    box-shadow: 0 14px 30px rgba(42,35,24,.25);
+  }
+  .summary-info strong{ display:block; font-size:1rem; }
+  .summary-info span{ display:block; font-size:.8rem; opacity:.85; margin-top:.2em; max-width:40ch; }
+  .summary-total{ text-align:center; }
+  .summary-total span{ display:block; font-size:.68rem; text-transform:uppercase; letter-spacing:.06em; opacity:.75; }
+  .summary-total strong{ display:block; font-family: var(--font-display); font-size:1.5rem; }
+  .ebook-summary .btn-primary{ background: var(--gold); color: var(--ink); box-shadow:none; }
+  .ebook-summary .btn-primary.disabled{ opacity:.5; pointer-events:none; }
+
+  .lightbox{
+    position:fixed; inset:0;
+    background: rgba(42,35,24,.85);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding: 32px;
+    z-index:100;
+    opacity:0;
+    pointer-events:none;
+    transition: opacity .2s ease;
+  }
+  .lightbox.open{ opacity:1; pointer-events:auto; }
+  .lightbox img{
+    max-width: min(560px, 92vw);
+    max-height: 88vh;
+    border-radius: 12px;
+    box-shadow: 0 20px 50px rgba(0,0,0,.4);
+  }
+  .lightbox-close{
+    position:absolute;
+    top: 22px; right: 26px;
+    background: rgba(244,238,221,.15);
+    color: var(--cream);
+    border:none;
+    width:40px; height:40px;
+    border-radius:50%;
+    font-size:1.1rem;
+    cursor:pointer;
+  }
+
   /* ---------- instagram ---------- */
   .instagram{
     background: var(--cream-2);
@@ -446,11 +627,15 @@
     .cards{ grid-template-columns: 1fr; }
     .steps{ grid-template-columns: 1fr; }
     .card:nth-child(1),.card:nth-child(2),.card:nth-child(3){ transform:none; }
+    .price-ladder{ grid-template-columns: repeat(2, 1fr); }
+    .ebook-summary{ position:static; flex-direction:column; align-items:stretch; text-align:center; }
+    .ebook-summary .btn-primary{ justify-content:center; }
   }
   @media (max-width: 480px){
     .logo-img{ height: 32px; }
     .sticker{ display:none; }
     .seal-badge{ width: 68px; height: 68px; right: -2%; bottom: -4%; }
+    .nav-link{ display:none; }
   }
 </style>
 </head>
@@ -461,10 +646,13 @@
     <a class="logo" href="#topo">
       <img src="logo-barbara-milesi.png" alt="Bárbara Milesi Nutricionista" class="logo-img">
     </a>
-    <a class="btn btn-primary" href="https://wa.me/5551993998011?text=Oi%2C%20B%C3%A1rbara%21%0AVi%20teu%20site%20e%20gostaria%20de%20saber%20mais%20sobre%20o%20acompanhamento" target="_blank" rel="noopener">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.5 8.5 0 0 1-8.5 8.5 8.4 8.4 0 0 1-4-1L3 20l1-5.5A8.5 8.5 0 1 1 21 11.5Z"/></svg>
-      Agendar
-    </a>
+    <div class="nav-right">
+      <a class="nav-link" href="#ebooks">E-books</a>
+      <a class="btn btn-primary" href="https://wa.me/5551993998011?text=Oi%2C%20B%C3%A1rbara%21%0AVi%20teu%20site%20e%20gostaria%20de%20saber%20mais%20sobre%20o%20acompanhamento" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.5 8.5 0 0 1-8.5 8.5 8.4 8.4 0 0 1-4-1L3 20l1-5.5A8.5 8.5 0 1 1 21 11.5Z"/></svg>
+        Agendar
+      </a>
+    </div>
   </div>
 </header>
 
@@ -553,6 +741,120 @@
   </div>
 </section>
 
+<section class="section" id="ebooks">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">E-books</span>
+      <h2>Leva mais, paga menos</h2>
+      <p>Material pra estudar no teu tempo, sobre os temas que mais caem na prática. Escolhe os e-books que quiseres — quanto mais tu levares, menor fica o valor por unidade.</p>
+    </div>
+
+    <div class="price-ladder reveal">
+      <div class="price-step">
+        <span class="step-count">1 e-book</span>
+        <span class="step-total">R$ 39,90</span>
+        <span class="step-unit">R$ 40 cada</span>
+      </div>
+      <div class="price-step">
+        <span class="step-count">2 e-books</span>
+        <span class="step-total">R$ 69,90</span>
+        <span class="step-unit">R$ 35 cada</span>
+      </div>
+      <div class="price-step">
+        <span class="step-count">3 e-books</span>
+        <span class="step-total">R$ 89,90</span>
+        <span class="step-unit">R$ 30 cada</span>
+      </div>
+      <div class="price-step">
+        <span class="step-count">4 e-books</span>
+        <span class="step-total">R$ 99,90</span>
+        <span class="step-unit">R$ 25 cada</span>
+      </div>
+      <div class="price-step best">
+        <span class="step-count">5 a 6</span>
+        <span class="step-total">R$ 105,90</span>
+        <span class="step-unit">R$ 21 cada</span>
+      </div>
+    </div>
+
+    <div class="ebook-grid reveal">
+
+      <article class="ebook-card">
+        <div class="ebook-cover"><img src="ebook-manual-capa.jpg" alt="Capa do e-book Manual de Organização e Planejamento da Dieta" loading="lazy"></div>
+        <h3>Manual de Organização e Planejamento</h3>
+        <p class="ebook-desc">Como planejar tua alimentação da semana: armazenamento, marmitas diversificadas, o que ter sempre no armário e como lidar com os dias mais corridos.</p>
+        <div class="ebook-actions">
+          <button class="btn-spoiler" disabled>Sumário em breve</button>
+          <button class="btn-add" onclick="toggleEbook(this,'manual')">+ Adicionar</button>
+        </div>
+      </article>
+
+      <article class="ebook-card">
+        <div class="ebook-cover"><img src="ebook-delivery-capa.jpg" alt="Capa do e-book Guia Delivery Inteligente" loading="lazy"></div>
+        <h3>Guia Delivery Inteligente</h3>
+        <p class="ebook-desc">Dia corrido e vontade de pedir delivery? Como escolher de forma mais assertiva e saudável, sem fugir muito do planejamento.</p>
+        <div class="ebook-actions">
+          <button class="btn-spoiler" onclick="openLightbox('ebook-delivery-sumario.jpg')">Ver sumário 👀</button>
+          <button class="btn-add" onclick="toggleEbook(this,'delivery')">+ Adicionar</button>
+        </div>
+      </article>
+
+      <article class="ebook-card">
+        <div class="ebook-cover"><img src="ebook-industrializados-capa.jpg" alt="Capa do e-book Guia de Industrializados" loading="lazy"></div>
+        <h3>Guia de Industrializados</h3>
+        <p class="ebook-desc">As opções mais saudáveis de diversos produtos de supermercado, com indicações de marcas pra te guiar na hora da compra.</p>
+        <div class="ebook-actions">
+          <button class="btn-spoiler" onclick="openLightbox('ebook-industrializados-sumario.jpg')">Ver sumário 👀</button>
+          <button class="btn-add" onclick="toggleEbook(this,'industrializados')">+ Adicionar</button>
+        </div>
+      </article>
+
+      <article class="ebook-card">
+        <div class="ebook-cover"><img src="ebook-suplementos-capa.jpg" alt="Capa do e-book Guia de Suplementos" loading="lazy"></div>
+        <h3>Guia de Suplementos</h3>
+        <p class="ebook-desc">Pra que serve cada suplemento, dose, modo de uso e sugestões de marcas — de um jeito simples e didático pra tirar tuas dúvidas.</p>
+        <div class="ebook-actions">
+          <button class="btn-spoiler" onclick="openLightbox('ebook-suplementos-sumario.jpg')">Ver sumário 👀</button>
+          <button class="btn-add" onclick="toggleEbook(this,'suplementos')">+ Adicionar</button>
+        </div>
+      </article>
+
+      <article class="ebook-card">
+        <div class="ebook-cover"><img src="ebook-fastfood-capa.jpg" alt="Capa do e-book Fastfood" loading="lazy"></div>
+        <h3>Fastfood</h3>
+        <p class="ebook-desc">As opções menos calóricas das 10 maiores redes de fast-food, pra escolher melhor se um dia bater aquela vontade de exceção.</p>
+        <div class="ebook-actions">
+          <button class="btn-spoiler" onclick="openLightbox('ebook-fastfood-sumario.jpg')">Ver sumário 👀</button>
+          <button class="btn-add" onclick="toggleEbook(this,'fastfood')">+ Adicionar</button>
+        </div>
+      </article>
+
+      <article class="ebook-card">
+        <div class="ebook-cover"><img src="ebook-ifood-capa.jpg" alt="Capa do e-book iFood em Casa" loading="lazy"></div>
+        <h3>iFood em Casa</h3>
+        <p class="ebook-desc">10 receitas no estilo "iFood" pra fazer em casa — alimentação saudável sem ser monótona e sem cara de dieta.</p>
+        <div class="ebook-actions">
+          <button class="btn-spoiler" onclick="openLightbox('ebook-ifood-sumario.jpg')">Ver receita 👀</button>
+          <button class="btn-add" onclick="toggleEbook(this,'ifood')">+ Adicionar</button>
+        </div>
+      </article>
+
+    </div>
+
+    <div class="ebook-summary reveal" id="ebookSummary">
+      <div class="summary-info">
+        <strong id="summaryCount">0 e-books selecionados</strong>
+        <span id="summaryIncentive">Escolhe pelo menos 1 e-book pra começar</span>
+      </div>
+      <div class="summary-total">
+        <span>Total</span>
+        <strong id="summaryTotal">R$ 0,00</strong>
+      </div>
+      <a class="btn btn-primary disabled" id="summaryWhatsapp" target="_blank" rel="noopener">Fechar pedido no WhatsApp</a>
+    </div>
+  </div>
+</section>
+
 <section class="section" id="como-funciona">
   <div class="wrap">
     <div class="section-head reveal">
@@ -624,6 +926,11 @@
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.5 8.5 0 0 1-8.5 8.5 8.4 8.4 0 0 1-4-1L3 20l1-5.5A8.5 8.5 0 1 1 21 11.5Z"/></svg>
 </a>
 
+<div class="lightbox" id="lightbox" onclick="closeLightbox(event)">
+  <button class="lightbox-close" onclick="closeLightbox(event)" aria-label="Fechar">✕</button>
+  <img src="" alt="Sumário do e-book" id="lightboxImg">
+</div>
+
 <script>
   const els = document.querySelectorAll('.reveal');
   if('IntersectionObserver' in window){
@@ -635,6 +942,82 @@
     els.forEach(el => io.observe(el));
   } else {
     els.forEach(el => el.classList.add('is-visible'));
+  }
+
+  // ---------- e-books: preço progressivo + lightbox ----------
+  const EBOOK_PRICES = {0:0, 1:39.90, 2:69.90, 3:89.90, 4:99.90, 5:105.90, 6:105.90};
+  const EBOOK_TITLES = {
+    manual: 'Manual de Organização e Planejamento',
+    delivery: 'Guia Delivery Inteligente',
+    industrializados: 'Guia de Industrializados',
+    suplementos: 'Guia de Suplementos',
+    fastfood: 'Fastfood',
+    ifood: 'iFood em Casa'
+  };
+  const selectedEbooks = new Set();
+
+  function formatBRL(v){
+    return 'R$ ' + v.toFixed(2).replace('.', ',');
+  }
+
+  function toggleEbook(btn, id){
+    const card = btn.closest('.ebook-card');
+    if(selectedEbooks.has(id)){
+      selectedEbooks.delete(id);
+      btn.classList.remove('active');
+      btn.textContent = '+ Adicionar';
+      card.classList.remove('selected');
+    } else {
+      selectedEbooks.add(id);
+      btn.classList.add('active');
+      btn.textContent = '✓ Adicionado';
+      card.classList.add('selected');
+    }
+    updateEbookSummary();
+  }
+
+  function updateEbookSummary(){
+    const count = selectedEbooks.size;
+    const total = EBOOK_PRICES[count] || 0;
+
+    document.getElementById('summaryCount').textContent =
+      count + (count === 1 ? ' e-book selecionado' : ' e-books selecionados');
+    document.getElementById('summaryTotal').textContent = formatBRL(total);
+
+    const incentiveEl = document.getElementById('summaryIncentive');
+    let incentive = '';
+    if(count === 0){
+      incentive = 'Escolhe pelo menos 1 e-book pra começar';
+    } else if(count < 4){
+      incentive = `Adiciona mais 1 e o total fica ${formatBRL(EBOOK_PRICES[count+1])}`;
+    } else if(count < 6){
+      incentive = `Leva os 6 e pague só ${formatBRL(EBOOK_PRICES[6])} no total`;
+    } else {
+      incentive = 'Você pegou os 6 e-books completos! 🎉';
+    }
+    incentiveEl.textContent = incentive;
+
+    const wa = document.getElementById('summaryWhatsapp');
+    if(count === 0){
+      wa.classList.add('disabled');
+      wa.removeAttribute('href');
+    } else {
+      wa.classList.remove('disabled');
+      let msg = 'Oi, Bárbara!\nQuero adquirir os seguintes e-books:\n';
+      selectedEbooks.forEach(id => { msg += '- ' + EBOOK_TITLES[id] + '\n'; });
+      msg += '\nTotal: ' + formatBRL(total);
+      wa.href = 'https://wa.me/5551993998011?text=' + encodeURIComponent(msg);
+    }
+  }
+
+  function openLightbox(src){
+    document.getElementById('lightboxImg').src = src;
+    document.getElementById('lightbox').classList.add('open');
+  }
+  function closeLightbox(e){
+    if(e.target.id === 'lightbox' || e.target.classList.contains('lightbox-close')){
+      document.getElementById('lightbox').classList.remove('open');
+    }
   }
 </script>
 
