@@ -1511,14 +1511,14 @@
   }
 
   async function loadTestimonials(){
-    if(!supabaseClient) return; // mantém os exemplos fixos do HTML como fallback
+    if(!supabaseClient) return;
     const grid = document.getElementById('testimonialGrid');
     const { data, error } = await supabaseClient
       .from('depoimentos')
       .select('autor, estrelas, texto, created_at')
       .eq('aprovado', true)
       .order('created_at', { ascending: false });
-    if(error || !data || data.length === 0) return; // mantém os exemplos fixos
+    if(error || !data || data.length === 0) return;
     grid.innerHTML = data.map(testimonialCardHTML).join('');
   }
   loadTestimonials();
