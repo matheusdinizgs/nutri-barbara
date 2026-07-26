@@ -343,6 +343,19 @@
     font-size:.85rem;
     color: var(--olive-deep);
   }
+  .testimonial-meta{
+    display:flex;
+    align-items:baseline;
+    justify-content:space-between;
+    gap: .6em;
+    flex-wrap:wrap;
+  }
+  .testimonial-date{
+    font-size:.75rem;
+    font-weight:500;
+    color: var(--olive-mid);
+    white-space:nowrap;
+  }
 
   .testimonial-form{
     background: var(--cream-2);
@@ -1257,31 +1270,46 @@
       <article class="testimonial-card">
         <div class="stars" aria-label="5 de 5 estrelas">★★★★★</div>
         <p class="testimonial-quote">A Bárbara não olha só pro peso. Ela entende a rotina de verdade, e isso mudou como eu enxergo a comida.</p>
-        <span class="testimonial-author">Mariana R.</span>
+        <div class="testimonial-meta">
+          <span class="testimonial-author">Mariana R.</span>
+          <span class="testimonial-date">12 de janeiro</span>
+        </div>
       </article>
 
       <article class="testimonial-card">
         <div class="stars" aria-label="5 de 5 estrelas">★★★★★</div>
         <p class="testimonial-quote">Depois de anos tentando dieta por conta própria, finalmente entendi como comer de um jeito que funciona pra mim.</p>
-        <span class="testimonial-author">Paciente há 8 meses</span>
+        <div class="testimonial-meta">
+          <span class="testimonial-author">Paciente há 8 meses</span>
+          <span class="testimonial-date">20 de novembro</span>
+        </div>
       </article>
 
       <article class="testimonial-card">
         <div class="stars" aria-label="5 de 5 estrelas">★★★★★</div>
         <p class="testimonial-quote">Acompanhamento direto ao ponto, sem enrolação. Recomendo pra quem treina e quer resultado de verdade.</p>
-        <span class="testimonial-author">Lucas T.</span>
+        <div class="testimonial-meta">
+          <span class="testimonial-author">Lucas T.</span>
+          <span class="testimonial-date">3 de fevereiro</span>
+        </div>
       </article>
 
       <article class="testimonial-card">
         <div class="stars" aria-label="4 de 5 estrelas">★★★★☆</div>
         <p class="testimonial-quote">Atendimento acolhedor, bem menos julgamento do que eu esperava. Só senti falta de mais horários disponíveis.</p>
-        <span class="testimonial-author">Paciente há 3 meses</span>
+        <div class="testimonial-meta">
+          <span class="testimonial-author">Paciente há 3 meses</span>
+          <span class="testimonial-date">22 de abril</span>
+        </div>
       </article>
 
       <article class="testimonial-card">
         <div class="stars" aria-label="5 de 5 estrelas">★★★★★</div>
         <p class="testimonial-quote">O plano se encaixou na minha rotina corrida, e isso fez toda diferença pra eu conseguir seguir em frente.</p>
-        <span class="testimonial-author">Camila S.</span>
+        <div class="testimonial-meta">
+          <span class="testimonial-author">Camila S.</span>
+          <span class="testimonial-date">6 de março</span>
+        </div>
       </article>
 
     </div>
@@ -1462,12 +1490,23 @@
     return '★'.repeat(n) + '☆'.repeat(5 - n);
   }
 
+  function formatDate(isoString){
+    if(!isoString) return '';
+    const date = new Date(isoString);
+    if(isNaN(date)) return '';
+    return new Intl.DateTimeFormat('pt-BR', { day: 'numeric', month: 'long' }).format(date);
+  }
+
   function testimonialCardHTML(t){
     const author = (t.autor && t.autor.trim()) ? escapeHTML(t.autor) : 'Paciente anônimo(a)';
+    const dateStr = formatDate(t.created_at);
     return `<article class="testimonial-card">
       <div class="stars" aria-label="${t.estrelas} de 5 estrelas">${renderStars(t.estrelas)}</div>
       <p class="testimonial-quote">${escapeHTML(t.texto)}</p>
-      <span class="testimonial-author">${author}</span>
+      <div class="testimonial-meta">
+        <span class="testimonial-author">${author}</span>
+        ${dateStr ? `<span class="testimonial-date">${dateStr}</span>` : ''}
+      </div>
     </article>`;
   }
 
